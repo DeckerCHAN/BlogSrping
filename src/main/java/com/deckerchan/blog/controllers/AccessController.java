@@ -1,13 +1,12 @@
 package com.deckerchan.blog.controllers;
 
-import com.deckerchan.blog.entities.inbound.AccessRequest;
 import com.deckerchan.blog.entities.outbount.Response;
 import com.deckerchan.blog.entities.storage.AccessRecord;
 import com.deckerchan.blog.repositories.AccessRepository;
+import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.DateFormat;
 import java.util.Date;
 import java.util.UUID;
 
@@ -18,16 +17,15 @@ public class AccessController {
     private AccessRepository accessRepository;
 
     @CrossOrigin
-    @RequestMapping(value = "api/access", method = RequestMethod.POST)
-    public Response writeRecord(@RequestBody AccessRequest request) {
+    @RequestMapping(value = "api/access", method = RequestMethod.GET)
+    public Response writeRecord(HttpServletRequest request, @RequestHeader(value = "User-Agent") String userAgent) {
 
         try {
             AccessRecord record = new AccessRecord();
             record.setId(UUID.randomUUID());
             record.setAccessDate(new Date());
-            record.setBrowserName(request.getBrowserName());
-            record.setDevice(request.getDevice());
-            record.setOsName(request.getOsName());
+            record.setAddress(request.getRemoteAddr());
+            record.setUserAgent(userAgent);
             this.accessRepository.insert(record);
             Response response = new Response();
             response.setSuccessful(true);

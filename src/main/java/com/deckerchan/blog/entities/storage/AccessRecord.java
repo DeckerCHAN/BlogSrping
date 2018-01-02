@@ -9,9 +9,8 @@ public final class AccessRecord {
     @Id
     private UUID id;
     private Date accessDate;
-    private String browserName;
-    private String osName;
-    private String device;
+    private String address;
+    private String userAgent;
 
     public UUID getId() {
         return id;
@@ -29,27 +28,19 @@ public final class AccessRecord {
         this.accessDate = accessDate;
     }
 
-    public String getBrowserName() {
-        return browserName;
+    public String getAddress() {
+        return address;
     }
 
-    public void setBrowserName(String browserName) {
-        this.browserName = browserName;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public String getOsName() {
-        return osName;
+    public String getUserAgent() {
+        return userAgent;
     }
 
-    public void setOsName(String osName) {
-        this.osName = osName;
-    }
-
-    public String getDevice() {
-        return device;
-    }
-
-    public void setDevice(String device) {
-        this.device = device;
+    public void setUserAgent(String userAgent) {
+        this.userAgent = userAgent;
     }
 }
