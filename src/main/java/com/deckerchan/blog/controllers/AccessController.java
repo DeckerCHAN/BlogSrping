@@ -18,7 +18,7 @@ public class AccessController {
     private AccessRepository accessRepository;
 
     @CrossOrigin
-    @RequestMapping(value = "api/access", method = RequestMethod.POST)
+    @RequestMapping(value = "access", method = RequestMethod.POST)
     public Response writeRecord(HttpServletRequest serverletReq, @RequestBody RecordRequest request) {
 
         try {
