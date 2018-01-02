@@ -3,10 +3,10 @@ package com.deckerchan.blog.controllers;
 import com.deckerchan.blog.entities.outbount.Response;
 import com.deckerchan.blog.entities.storage.AccessRecord;
 import com.deckerchan.blog.repositories.AccessRepository;
-import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.UUID;
 
