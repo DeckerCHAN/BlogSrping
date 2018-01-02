@@ -10,7 +10,9 @@ public final class AccessRecord {
     private UUID id;
     private Date accessDate;
     private String address;
-    private String userAgent;
+    private String appCodeName;
+    private String vendor;
+    private String platform;
 
     public UUID getId() {
         return id;
@@ -36,11 +38,27 @@ public final class AccessRecord {
         this.address = address;
     }
 
-    public String getUserAgent() {
-        return userAgent;
+    public String getAppCodeName() {
+        return appCodeName;
     }
 
-    public void setUserAgent(String userAgent) {
-        this.userAgent = userAgent;
+    public void setAppCodeName(String appCodeName) {
+        this.appCodeName = appCodeName;
+    }
+
+    public String getVendor() {
+        return vendor;
+    }
+
+    public void setVendor(String vendor) {
+        this.vendor = vendor;
+    }
+
+    public String getPlatform() {
+        return platform;
+    }
+
+    public void setPlatform(String platform) {
+        this.platform = platform;
     }
 }
