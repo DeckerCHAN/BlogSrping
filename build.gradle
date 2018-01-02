@@ -10,14 +10,13 @@ buildscript {
     }
 }
 
+apply plugin: 'war'
 apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 
-jar {
-    baseName = 'Blog'
-    version =  project.version
+war {
+    baseName = 'derek_blog'
+    version = project.version
 }
 
 repositories {
@@ -29,5 +28,9 @@ targetCompatibility = 1.8
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-data-mongodb")
+    compile("org.aspectj:aspectjrt")
     testCompile('org.springframework.boot:spring-boot-starter-test')
+    providedCompile('org.springframework.boot:spring-boot-starter-tomcat')
+
 }
