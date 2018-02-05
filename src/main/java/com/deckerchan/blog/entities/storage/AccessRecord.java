@@ -54,7 +54,7 @@ public final class AccessRecord {
         this.vendor = vendor;
     }
 
-    public String getPlatform() {
+    public String getPlatform()  {
         return platform;
     }
 
