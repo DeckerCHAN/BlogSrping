@@ -2,13 +2,24 @@ package com.deckerchan.blog.entities.storage;
 
 import org.springframework.data.annotation.Id;
 
+import java.util.Collection;
 import java.util.UUID;
 
 public class Shop {
     @Id
-    public UUID id;
-    public String name;
-    public String description;
+    private UUID id;
+    private String name;
+    private String description;
+
+    public Collection<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(Collection<Item> items) {
+        this.items = items;
+    }
+
+    private Collection<Item> items;
 
     public String getName() {
         return name;

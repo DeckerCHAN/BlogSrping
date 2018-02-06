@@ -7,6 +7,7 @@ import com.deckerchan.blog.entities.outbount.UserInfoResponse;
 import com.deckerchan.blog.entities.storage.User;
 import com.deckerchan.blog.repositories.UserRepository;
 import com.deckerchan.blog.security.DerekUserDetailsService;
+import com.deckerchan.blog.utils.RandomUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -57,6 +58,44 @@ public class AccountController {
         } catch (Exception ex) {
             response.setSuccessful(false);
             response.setErrorMessage(ex.toString());
+        } finally {
+            return response;
+        }
+    }
+
+
+    @CrossOrigin
+    @RequestMapping(value = "user/fill", method = RequestMethod.GET)
+    public Response fillUserInfo() {
+
+
+        Response response = new Response();
+
+        try {
+
+            for(int i = 0;i<1000;i++){
+                try{
+                    this.derekUserDetailsService.addUser(RandomUtils.randomName(1,3,""), "A12345", "BASIC");
+
+                }catch (Exception ex){
+                    continue;
+                }
+            }
+            for(int i = 0;i<20;i++){
+
+                try{
+                    this.derekUserDetailsService.addUser(RandomUtils.randomName(1,3,""), "A12345", "SEALS");
+
+                }catch (Exception ex){
+                    continue;
+                }
+            }
+            this.derekUserDetailsService.addUser("DerekCHAN", "A12345", "MASTER");
+
+            response.setSuccessful(true);
+        } catch (Exception ex) {
+            response.setSuccessful(false);
+            response.setErrorMessage(ex.getMessage());
         } finally {
             return response;
         }

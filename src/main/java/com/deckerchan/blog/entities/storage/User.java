@@ -1,6 +1,7 @@
 package com.deckerchan.blog.entities.storage;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -12,6 +13,7 @@ public class User implements UserDetails {
     @Id
     private UUID id;
     private String password;
+    @Indexed(unique = true)
     private String username;
     private double credits;
     private Collection<GrantedAuthority> authorities;
