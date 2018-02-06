@@ -27,8 +27,6 @@ class TokenAuthenticationService {
                 .signWith(SignatureAlgorithm.HS512, SECRET)
                 .compact();
         Cookie cookie = new Cookie(HEADER_STRING, JWT);
-        cookie.setDomain("localhost");
-        cookie.setPath("/");
         res.addCookie(cookie);
         res.addHeader(HEADER_STRING,  JWT);
     }
