@@ -17,10 +17,19 @@ public class User implements UserDetails {
     private String username;
     private double credits;
     private Collection<GrantedAuthority> authorities;
+    private Collection<Order> orders;
     private boolean accountNonExpired;
     private boolean accountNonLocked;
     private boolean credentialsNonExpired;
     private boolean enabled;
+
+    public Collection<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Collection<Order> orders) {
+        this.orders = orders;
+    }
 
     public UUID getId() {
         return id;

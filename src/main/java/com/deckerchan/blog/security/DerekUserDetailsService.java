@@ -1,5 +1,6 @@
 package com.deckerchan.blog.security;
 
+import com.deckerchan.blog.entities.storage.Order;
 import com.deckerchan.blog.entities.storage.User;
 import com.deckerchan.blog.repositories.UserRepository;
 import com.deckerchan.blog.utils.CodeUtils;
@@ -10,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.UUID;
 
@@ -29,12 +31,13 @@ public class DerekUserDetailsService implements UserDetailsService {
         }
     }
 
-    public void addUser(String username, String password, String role) {
+    public void addUser(String username, String password, String role, double initialCiedits) {
         User user = new User();
+        user.setOrders(new ArrayList<>());
         user.setId(UUID.randomUUID());
         user.setUsername(username);
         user.setPassword(CodeUtils.getHash(password));
-        user.setCredits(15D);
+        user.setCredits(initialCiedits);
         user.setAuthorities(Collections.singletonList(new SimpleGrantedAuthority(role)));
         user.setEnabled(true);
         user.setAccountNonExpired(true);

@@ -28,7 +28,7 @@ public class AccountController {
         Response response = new Response();
 
         try {
-            this.derekUserDetailsService.addUser(credentials.getUsername(), credentials.getPassword(), "BASIC");
+            this.derekUserDetailsService.addUser(credentials.getUsername(), credentials.getPassword(), "BASIC", 0D);
             response.setSuccessful(true);
         } catch (Exception ex) {
             response.setSuccessful(false);
@@ -48,12 +48,13 @@ public class AccountController {
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
             User user = this.userRepository.findByUsername(auth.getPrincipal().toString());
-            String title =   user.getAuthorities().stream().map(GrantedAuthority::getAuthority).reduce( (o, o2) -> o +" and "+ o2).orElse("Unknown").toLowerCase();
+            String title = user.getAuthorities().stream().map(GrantedAuthority::getAuthority).reduce((o, o2) -> o + " and " + o2).orElse("Unknown").toLowerCase();
 
             response.setId(user.getId());
             response.setCredits(user.getCredits());
             response.setTitle(title);
-            response.setUsername(auth.getPrincipal().toString() );
+            response.setUsername(auth.getPrincipal().toString());
+            response.setOrders(user.getOrders());
             response.setSuccessful(true);
         } catch (Exception ex) {
             response.setSuccessful(false);
@@ -73,24 +74,24 @@ public class AccountController {
 
         try {
 
-            for(int i = 0;i<1000;i++){
-                try{
-                    this.derekUserDetailsService.addUser(RandomUtils.randomName(1,3,""), "A12345", "BASIC");
+            for (int i = 0; i < 1; i++) {
+                try {
+                    this.derekUserDetailsService.addUser(RandomUtils.randomText(1, 3, ""), "A12345", "BASIC", 250);
 
-                }catch (Exception ex){
+                } catch (Exception ex) {
                     continue;
                 }
             }
-            for(int i = 0;i<20;i++){
+            for (int i = 0; i < 1; i++) {
 
-                try{
-                    this.derekUserDetailsService.addUser(RandomUtils.randomName(1,3,""), "A12345", "SEALS");
+                try {
+                    this.derekUserDetailsService.addUser(RandomUtils.randomText(1, 3, ""), "A12345", "SEALS", 250);
 
-                }catch (Exception ex){
+                } catch (Exception ex) {
                     continue;
                 }
             }
-            this.derekUserDetailsService.addUser("DerekCHAN", "A12345", "MASTER");
+            this.derekUserDetailsService.addUser("DerekCHAN", "A12345", "MASTER", 250);
 
             response.setSuccessful(true);
         } catch (Exception ex) {

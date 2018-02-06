@@ -1,10 +1,14 @@
 package com.deckerchan.blog.entities.outbount;
 
+import com.deckerchan.blog.entities.storage.Order;
+
+import java.util.Collection;
 import java.util.UUID;
 
 public class UserInfoResponse extends Response {
     private String username;
     private String title;
+    private Collection<Order> orders;
 
     public UUID getId() {
         return id;
@@ -40,5 +44,13 @@ public class UserInfoResponse extends Response {
 
     public void setCredits(double credits) {
         this.credits = credits;
+    }
+
+    public Collection<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Collection<Order> orders) {
+        this.orders = orders;
     }
 }
